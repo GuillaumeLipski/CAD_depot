@@ -1,0 +1,68 @@
+Le projet suivra une architecture MVC.
+
+Partie Vue:
+
+Frame Globale [Fenêtre application] 
+  -Ecran (Panel)
+
+Ecran Menu
+
+Ecran Jeu
+  -Jeu
+  -PanelFlotte allié
+  -PanelFlotte ennemie
+  -PanelInformation
+ 
+ 
+ Partie Modele
+ 
+ MainModele [Modèle principale permettant de créer une nouvelle partie et proposant toutes les époques/stratégies disponibles]
+  -GameFactory [Pour créer les parties avec différentes époques/stratégies/versions de jeu]
+  -Liste d'Epoques
+  -Liste de Stratégies
+  -Liste de Versions
+  
+Game [Avec Factory]
+  -Terrain de jeu [Divisé en deux parties]
+  -Flotte Alliée
+  -Flotte Ennemie
+  -Stratégie Ordinateur
+  -Coups restants?
+  -Epoque [Bien que utile seulement pour la création pour cloner les flottes]
+  
+Epoque
+  -Flotte type
+  -....
+  
+Flotte [Prototype, classe intermédiaire pour gérer les listes de bateaux de manière plus centralisée]
+  -Liste de bateaux
+  
+Bateaux [Utiliser Decorator? Bateau2Cases, Bateau3Cases, Bateau4Cases commes classes de bases, BateauArmureRenforcé (+1 défense), BateauCanonAméliorer (+1 dégats), Bateau CanonSupplémentaire, BateauMunitionSupplémentaire...]
+  C'est juste une proposition, c'est pas forcément très intéressant, mais ça vaut toujours le coût si on veut bien fayotter les design pattterns.
+  -Vie [booléen Mort/Vivant]
+  -Dimension
+  -Position
+  -Orientation
+  -Munitions
+  -Tableaux de Cases[]
+  
+  Highscore? [Singleton], avec une autre vue liée.  
+  
+  Partie Persistance
+  
+  Adapter[Singleton]
+  
+  DataAccesObjectVersionBinaire
+  
+  DataAccessObjectVersion XML
+  
+  [Revoir la structure dans le cours avec les factory sur les DataAccesObjects...]
+  
+  ....
+  
+  Je met Liste à chaque fois, mais ça peut être n'importe quoi, une collection, un tableau...
+  
+  C'est mis très grossièrement, il faudrat ajouter toutes les fonctions pour toutes les classes, rajouter les interfaces, les classes abstraites...
+  
+  N'hésitez pas à compléter / modifier / proposer d'autres versions.
+  
