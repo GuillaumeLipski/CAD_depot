@@ -1,0 +1,10 @@
+Guillaume:
+      Modèle (bateaux, époque, tirs)
+      
+Thibault:
+      Vues principales et secondaires.
+      Controlleurs pour chaque étape.
+      
+Innocent:
+      Persistance de données (Sauvegarde/Chargement) via un pattern DAO (Data Acces Object)
+      Factory de création de niveaux
