@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fichier de configuration (Epoque/Bateaux)
+ L'id des images bateaux doit commencer par 1 et les id suivants des images doivent suivre dans 
+ l'ordre croissant -->
+<epoques>
+    <epoque>
+        <id>5678</id>
+        <nom>Epoque1700</nom>
+        <siecle>inconnu</siecle>
+        <image>Epoque1700.jpg</image>
+        <bateaux>
+            <bateau>
+                <nom>Nombateau a ecrire </nom>
+                <longueur>5</longueur>
+                <portee>5</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                    <image id="3">.png</image>
+                    <image id="4">.png</image>
+                    <image id="5">.png</image>
+                </images>
+            </bateau>
+            <bateau>
+                <nom>nombateau</nom>
+                <longueur>4</longueur>
+                <portee>4</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                    <image id="3">.png</image>
+                    <image id="4">.png</image>
+                </images>
+            </bateau>
+            <bateau>
+                <nom>nombateau</nom>
+                <longueur>3</longueur>
+                <portee>3</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                    <image id="3">.png</image>
+                </images>
+            </bateau>
+            <bateau>
+                <nom>Nombateau a ecrire</nom>
+                <longueur>2</longueur>
+                <portee>2</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                </images>
+            </bateau>
+            <bateau>
+                <nom>Nombateau a ecrire</nom>
+                <longueur>2</longueur>
+                <portee>2</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                </images>
+            </bateau>
+        </bateaux>
+    </epoque>
+    <epoque>
+        <id>4678</id>
+        <nom>EpoqueActuelle</nom>
+        <siecle>15eme</siecle>
+        <image>EpoqueActuelle.png</image>
+        <bateaux>
+            <bateau>
+                <nom>Nombateau a ecrire</nom>
+                <longueur>5</longueur>
+                <portee>5</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                    <image id="3">.png</image>
+                    <image id="4">.png</image>
+                    <image id="5">.png</image>
+                </images>
+            </bateau>
+            <bateau>
+                <nom>Nombateau a ecrire</nom>
+                <longueur>4</longueur>
+                <portee>4</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                    <image id="3">.png</image>
+                    <image id="4">.png</image>
+                </images>
+            </bateau>
+            <bateau>
+                <nom>Nombateau a ecrire</nom>
+                <longueur>3</longueur>
+                <portee>3</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                    <image id="3">.png</image>
+                </images>
+            </bateau>
+            <bateau>
+                <nom>Nombateau a ecrire</nom>
+                <longueur>2</longueur>
+                <portee>2</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                </images>
+            </bateau>
+            <bateau>
+                <nom>Nombateau a ecrire</nom>
+                <longueur>2</longueur>
+                <portee>2</portee>
+                <images>
+                    <image id="1">.png</image>
+                    <image id="2">.png</image>
+                </images>
+            </bateau>
+        </bateaux>
+    </epoque>
+
+</epoques>
