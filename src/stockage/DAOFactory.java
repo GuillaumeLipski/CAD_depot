@@ -1,5 +1,5 @@
 
-package stokage;
+package stockage;
 
 /**
  *
