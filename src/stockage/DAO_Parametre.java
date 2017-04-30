@@ -1,5 +1,5 @@
 
-package stokage;
+package stockage;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,6 +10,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.lang.model.element.Element;
+import javax.swing.text.Document;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+
 
 /**
  *
@@ -30,7 +36,9 @@ public class DAO_Parametre {
     
     public DAO_Parametre() {
         
-        SAXBuilder sxb = new SAXBuilder();
+        SAXBuilder sx = new SAXBuilder();
+        
+       // SAXBuilder sxb = new SAXBuilder();
         try {
             
             //On crée un nouveau document JDOM avec en argument le fichier XML

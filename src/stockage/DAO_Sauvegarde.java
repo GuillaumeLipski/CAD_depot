@@ -1,5 +1,5 @@
 
-package stokage;
+package stockage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.lang.model.element.Element;
 import javax.swing.text.Document;
+import org.jdom2.Attribute;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 /**
  *
