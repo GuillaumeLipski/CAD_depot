@@ -24,7 +24,7 @@ public class Terrain {
 		flottes = new Flotte[2];
 		flottes[0]=f1;
 		flottes[1]=f2;
-		for (int i = 0; i < flottes[0].getNbBateau(); i++)
+		/*for (int i = 0; i < flottes[0].getNbBateau(); i++)
 		{
 			Bateau b1 = flottes[0].getBateau(i);
 			if (b1 != null)
@@ -58,7 +58,7 @@ public class Terrain {
 					}
 				}
 			}
-		}
+		}*/
 	}
 
 	public Flotte getJ1() {
@@ -67,6 +67,11 @@ public class Terrain {
 
 	public Flotte getJ2() {
 		return flottes[1];
+	}
+	
+	public Flotte getFlotte(int i)
+	{
+		return flottes[i-1];
 	}
 	
 	public int[][] getPlateau(int i)
@@ -127,20 +132,22 @@ public class Terrain {
 					plateau[j][p.y][p.x] = BTO;
 			}
 		}
-		System.out.println("YOLO");
 	}
 	public void updatePlacement(int i, int nb, Point position, boolean direction) {
 		Bateau b = flottes[i-1].getBateau(nb);
 		Point p = b.getPosition();
-		for (int k = 0; k < b.getTaille(); k++)
+		if (p.x != -1)
 		{
-			if (b.isDirection())
+			for (int k = 0; k < b.getTaille(); k++)
 			{
-				plateau[i-1][p.y][p.x + k] = VID;
-			}
-			else 
-			{
-				plateau[i-1][p.y + k][p.x] = VID;
+				if (b.isDirection())
+				{
+					plateau[i-1][p.y][p.x + k] = VID;
+				}
+				else 
+				{
+					plateau[i-1][p.y + k][p.x] = VID;
+				}
 			}
 		}
 		b.setPosition(position);

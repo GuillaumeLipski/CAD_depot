@@ -2,14 +2,14 @@ package modele.bateau;
 
 import java.awt.Point;
 
-public class Fregate extends Bateau {
+public class Patrouilleur extends Bateau {
 	
-	public Fregate()
+	public Patrouilleur()
 	{
 		super();
-		nom = "Fregate";
+		nom = "Patrouilleur";
 		NbMunition = 5;
-		taille = 5;
+		taille = 3;
 		direction = true;
 		tableauVie = new int[taille];
 		for (int i = 0 ; i < taille; i++)

@@ -131,7 +131,6 @@ public class CaseClick implements MouseListener {
 					state = State.SELECT_OK;
 				else
 					state = State.SELECT_KO;
-				System.out.println(state);
 				plateau.setState(x, y, state);
 				break;
 			}

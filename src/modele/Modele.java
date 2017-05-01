@@ -1,5 +1,6 @@
 package modele;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.util.Observable;
 
@@ -131,6 +132,8 @@ public class Modele extends Observable implements Runnable{
 		}
 		bateauSelectionne = null;
 		step = 1;
+		this.setChanged();
+		notifyObservers(new String());
 		while (!terrain.estTermine())
 		{
 			setPlayer(1 - (player - 1) + 1);

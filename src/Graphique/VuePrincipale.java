@@ -25,6 +25,8 @@ import modele.Terrain;
 import modele.bateau.Bateau;
 import modele.bateau.Corvette;
 import modele.bateau.Fregate;
+import modele.bateau.Patrouilleur;
+import modele.bateau.PorteAvion;
 import modele.flotte.Flotte;
 
 public class VuePrincipale extends JFrame{
@@ -44,21 +46,23 @@ public class VuePrincipale extends JFrame{
         setMinimumSize(new Dimension(1500, 500));
         setMinimumSize(new Dimension(1500, 500));
         
-        Bateau[] bateaux = new Bateau[5];
-        bateaux[0] = new Corvette(0,0);
-        bateaux[1] = new Fregate(1,1);
-        bateaux[2] = new Corvette(2,2);
-        bateaux[3] = new Fregate(3,3);
-        bateaux[4] = new Corvette(4,4);
+        Bateau[] bateaux = new Bateau[6];
+        bateaux[0] = new Corvette();
+        bateaux[1] = new Corvette();
+        bateaux[2] = new Patrouilleur();
+        bateaux[3] = new Patrouilleur();
+        bateaux[4] = new PorteAvion();
+        bateaux[5] = new Fregate();
         int width = 10, height = 10;
         Flotte f1, f2;
         f1 = new Flotte(bateaux);
-        bateaux = new Bateau[5];
-        bateaux[0] = new Corvette(0,0);
-        bateaux[1] = new Fregate(1,1);
-        bateaux[2] = new Corvette(2,2);
-        bateaux[3] = new Fregate(3,3);
-        bateaux[4] = new Corvette(4,4);
+        bateaux = new Bateau[6];
+        bateaux[0] = new Corvette();
+        bateaux[1] = new Corvette();
+        bateaux[2] = new Patrouilleur();
+        bateaux[3] = new Patrouilleur();
+        bateaux[4] = new PorteAvion();
+        bateaux[5] = new Fregate();
         f2 = new Flotte(bateaux);
         
         Terrain t = new Terrain(width, height, f1, f2);

@@ -1,6 +1,12 @@
 package modele.bateau;
 
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public abstract class Bateau {
 
@@ -19,6 +25,10 @@ public abstract class Bateau {
 	
 	protected int[] tableauVie;
 
+	public Bateau()
+	{
+		position = new Point(-1,-1);
+	}
 	public String getNom() {
 		return nom;
 	}
@@ -97,5 +107,17 @@ public abstract class Bateau {
 	public String toString()
 	{
 		return nom +" (Taille "+taille+" en ["+position.x+","+position.y+"])";
+	}
+		
+	public Image getImage(int i)
+	{
+		String res = "/"+nom+""+(i+1)+".png";
+	    if (!direction)
+	    	res = "/"+nom+""+(i+1)+"r.png";
+		System.out.print(res);
+	    java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
+	    java.net.URL url = getClass().getResource(res);
+		Image image =  toolkit.getImage(url);
+		return image;
 	}
 }

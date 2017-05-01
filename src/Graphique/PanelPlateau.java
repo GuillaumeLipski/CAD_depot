@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Point;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,6 +16,8 @@ import controle.CaseClick;
 import graphique.Case.State;
 import modele.Modele;
 import modele.Terrain;
+import modele.bateau.Bateau;
+import modele.flotte.Flotte;
 
 public class PanelPlateau extends JPanel  implements Observer{
 
@@ -91,6 +95,26 @@ public class PanelPlateau extends JPanel  implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		Modele m = (Modele)o;
+		if (arg != null && arg instanceof String)
+		{
+			Flotte f = m.getTerrain().getFlotte(n_joueur);
+			for (int i = 0; i < f.getNbBateau(); i++)
+			{
+				Bateau b = f.getBateau(i);
+				Point p = b.getPosition();
+				for (int k = 0; k < b.getTaille(); k++)
+				{
+					if (b.isDirection())
+					{
+						plateau[p.y][p.x + k].setImage(b.getImage(k));
+					}
+					else 
+					{
+						plateau[p.y + k][p.x].setImage(b.getImage(k));
+					}
+				}
+			}
+		}
 		int[][] p = m.getTerrain().getPlateau(n_joueur);
 		boolean enable = (n_joueur == m.getPlayerTurn());
 		int step = m.getStep();
