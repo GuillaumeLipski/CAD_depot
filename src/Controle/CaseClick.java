@@ -48,7 +48,7 @@ public class CaseClick implements MouseListener {
 					{
 						int x = (int)caseliée.getCoords().getX();
 						int y = (int)caseliée.getCoords().getY();
-						State state = State.BATEAU_OK;
+						State state = State.VIDE;
 						if (!direction)
 						{
 							for (int i = 0; i<taille; i++)
@@ -63,7 +63,7 @@ public class CaseClick implements MouseListener {
 							}
 						}
 						m.donnerPosition(new Point(x,y), direction);
-						this.mouseEntered(arg0);
+						this.mouseExited(arg0);
 					}
 					break;
 				case MouseEvent.BUTTON2:
@@ -127,8 +127,11 @@ public class CaseClick implements MouseListener {
 			case 1: //Choix d'une case à viser
 				boolean check = true;
 				State s = plateau.getState(x, y);
-				/*if (state != State.VIDE)
-					state = State.SELECT_KO;*/
+				if (s == State.VIDE || s == State.BATEAU_TO)
+					state = State.SELECT_OK;
+				else
+					state = State.SELECT_KO;
+				System.out.println(state);
 				plateau.setState(x, y, state);
 				break;
 			}

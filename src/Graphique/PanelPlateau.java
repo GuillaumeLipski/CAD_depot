@@ -92,16 +92,20 @@ public class PanelPlateau extends JPanel  implements Observer{
 	public void update(Observable o, Object arg) {
 		Modele m = (Modele)o;
 		int[][] p = m.getTerrain().getPlateau(n_joueur);
-		boolean same_player = n_joueur == m.getPlayerTurn();
+		boolean enable = (n_joueur == m.getPlayerTurn());
+		int step = m.getStep();
 		for (int x = 0; x < width; x++)
 		{
 			for (int y = 0; y < height; y++)
 			{
-				plateau[y][x].setState(p[y][x], same_player);
+				plateau[y][x].setState(p[y][x], enable);
 			}
 		}
-		controleur.enable(same_player);
-		controleur.setStep(m.getStep());
+		if (step != 0)
+			enable = !enable;
+		controleur.enable(enable);
+		controleur.setStep(step);
+		controleur.setTaille(m.getTaille());
 	}
 
 	public void setModele(Modele modele) {

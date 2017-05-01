@@ -13,6 +13,7 @@ public class Case extends JPanel {
 		VIDE,
 		BATEAU_OK,
 		BATEAU_TO,
+		BATEAU_TT,
 		BATEAU_KO,
 		PLOUF,
 		SELECT_OK,
@@ -63,6 +64,9 @@ public class Case extends JPanel {
 				this.setBackground(Color.GRAY);
 				break;
 			case BATEAU_TO:
+				this.setBackground(Color.YELLOW);
+				break;
+			case BATEAU_TT:
 				this.setBackground(Color.ORANGE);
 				break;
 			case BATEAU_KO:
@@ -75,7 +79,7 @@ public class Case extends JPanel {
 				this.setBackground(Color.GREEN);
 				break;
 			case SELECT_KO:
-				this.setBackground(Color.RED);
+				this.setBackground(Color.DARK_GRAY);
 				break;
 		}
 	}
@@ -96,16 +100,13 @@ public class Case extends JPanel {
 				setState(State.BATEAU_TO);
 				break;
 			case 3: 
-				setState(State.BATEAU_KO);
+				setState(State.BATEAU_TT);
 				break;
 			case 4: 
-				setState(State.PLOUF);
+				setState(State.BATEAU_KO);
 				break;
 			case 5: 
-				setState(State.SELECT_OK);
-				break;
-			case 6: 
-				setState(State.SELECT_KO);
+				setState(State.PLOUF);
 				break;
 		}
 	}

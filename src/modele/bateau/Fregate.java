@@ -11,5 +11,7 @@ public class Fregate extends Bateau {
 		direction = true;
 		position = new Point(x,y);
 		tableauVie = new int[taille];
+		for (int i = 0 ; i < taille; i++)
+			tableauVie[i] = 2;
 	}
 }

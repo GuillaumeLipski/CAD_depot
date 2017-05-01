@@ -68,19 +68,34 @@ public abstract class Bateau {
 		}
 		return res;
 	}
+	public boolean testerTir(Point tir, int puissance){
+		double x=tir.getX();
+		double y=tir.getY();
+		boolean res=false;
+		if(direction){
+			if(y==position.getY()&&x>=position.getX()&&x<position.getX()+taille){
+				res=true;
+				tableauVie[(int)(x-position.getX())]-= puissance;
+			}
+		}else{
+			if(x==position.getX()&&y>=position.getY()&&y<position.getY()+taille){
+				res=true;
+				tableauVie[(int)(y-position.getY())]-=puissance;
+			}
+		}
+		return res;
+	}
 	
 	public boolean estDetruit(){
-		boolean res=false;
+		boolean res=true;
 		for(int i=0;i<taille;i++){
-			if(tableauVie[i]!=0){
-				res=true;
-			}
+			res = res &&(tableauVie[i]<=0);
 		}
 		return res;
 	}
 	
 	public String toString()
 	{
-		return nom +" (Taille "+taille+")";
+		return nom +" (Taille "+taille+" en ["+position.x+","+position.y+"])";
 	}
 }

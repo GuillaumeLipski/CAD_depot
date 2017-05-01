@@ -53,6 +53,12 @@ public class VuePrincipale extends JFrame{
         int width = 10, height = 10;
         Flotte f1, f2;
         f1 = new Flotte(bateaux);
+        bateaux = new Bateau[5];
+        bateaux[0] = new Corvette(0,0);
+        bateaux[1] = new Fregate(1,1);
+        bateaux[2] = new Corvette(2,2);
+        bateaux[3] = new Fregate(3,3);
+        bateaux[4] = new Corvette(4,4);
         f2 = new Flotte(bateaux);
         
         Terrain t = new Terrain(width, height, f1, f2);
