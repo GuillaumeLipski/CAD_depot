@@ -1,4 +1,4 @@
-package Graphique;
+package graphique;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -76,6 +76,36 @@ public class Case extends JPanel {
 				break;
 			case SELECT_KO:
 				this.setBackground(Color.RED);
+				break;
+		}
+	}
+
+	public void setState(int i, boolean player) {
+		switch (i)
+		{
+			case 0: 
+				setState(State.VIDE);
+				break;
+			case 1: 
+				if (player)
+					setState(State.BATEAU_OK);
+				else 
+					setState(State.VIDE);
+				break;
+			case 2: 
+				setState(State.BATEAU_TO);
+				break;
+			case 3: 
+				setState(State.BATEAU_KO);
+				break;
+			case 4: 
+				setState(State.PLOUF);
+				break;
+			case 5: 
+				setState(State.SELECT_OK);
+				break;
+			case 6: 
+				setState(State.SELECT_KO);
 				break;
 		}
 	}

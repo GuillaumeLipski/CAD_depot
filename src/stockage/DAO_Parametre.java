@@ -22,7 +22,7 @@ import org.jdom2.input.SAXBuilder;
  * @author Aziasso_I
  */
 public class DAO_Parametre {
-    
+    /*
      ////////////////////////////// VARIABLES //////////////////////////////////
     
     
@@ -63,7 +63,7 @@ public class DAO_Parametre {
     /**
      * Permet de recuperer les tailles de grille disponible
      * @return une liste des tailles de grille disonible
-     */
+     
     public List getTaillesGrille() {
         
         List grillesXML = racine.getChildren("grille");
@@ -86,7 +86,7 @@ public class DAO_Parametre {
     /**
      * Permet de recuperer les difficultees disponibles
      * @return la liste de toutes les difficultees disponibles
-     */
+     
     public List getDifficultees() {
         
         Element difficulteXML = racine.getChild("difficulte");
@@ -109,7 +109,7 @@ public class DAO_Parametre {
     
     /**
      * Permet d'ecrire le fichier parametre s'il n'existe pas 
-     */
+     
     private void ecrireFichParam() {
         
         String s = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -150,7 +150,7 @@ public class DAO_Parametre {
         
     } 
 
-    
+    */
 } 
     
 

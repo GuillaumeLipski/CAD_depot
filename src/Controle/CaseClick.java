@@ -1,118 +1,160 @@
-package Controle;
+package controle;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import Graphique.Case;
-import Graphique.Case.State;
-import Graphique.PanelPlateau;
+import graphique.Case;
+import graphique.Case.State;
+import graphique.PanelPlateau;
+import modele.Modele;
 
 public class CaseClick implements MouseListener {
 
 	int status=0;
 	int taille = 5;
-	int direction = 0;
+	boolean direction = false;
+	int height;
+	int width;
 	PanelPlateau plateau;
+	boolean enable = true;
+	int step = 0;
+	Modele m;
 	
-	public CaseClick(PanelPlateau p)
+	public CaseClick(PanelPlateau p, int w, int h)
 	{
 		plateau = p;
+		width = w;
+		height = h;
 	}
+	
+	public void enable(boolean b) {enable = b;}
+	
+	public void setStep(int s) {step = s; if (s==1) setTaille(1);}
+	
+	public void setTaille(int t) { taille = t;}
+	
+	public void setModele(Modele mo) {m = mo;}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		switch (arg0.getButton())
+		if (enable)
 		{
-			case MouseEvent.BUTTON1:		
-				Case caseliée = (Case) arg0.getSource();
-				int x = (int)caseliée.getCoords().getX();
-				int y = (int)caseliée.getCoords().getY();
-				State state = State.BATEAU_OK;
-				if (direction ==0)
+			switch (arg0.getButton())
+			{
+				case MouseEvent.BUTTON1:		
+					Case caseliée = (Case) arg0.getSource();
+					if (caseliée.getState() == Case.State.SELECT_OK)
+					{
+						int x = (int)caseliée.getCoords().getX();
+						int y = (int)caseliée.getCoords().getY();
+						State state = State.BATEAU_OK;
+						if (!direction)
+						{
+							for (int i = 0; i<taille; i++)
+							{
+								plateau.setState(x+i, y, state);
+							}
+						} else 
+						{
+							for (int i = 0; i<taille; i++)
+							{
+								plateau.setState(x, y+i, state);
+							}
+						}
+						m.donnerPosition(new Point(x,y), direction);
+						this.mouseEntered(arg0);
+					}
+					break;
+				case MouseEvent.BUTTON2:
+					this.mouseExited(arg0);
+					direction = !direction;
+					this.mouseEntered(arg0);
+				break;
+			}
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		if (enable)
+		{
+			Case caseliée = (Case) arg0.getSource();
+			int x = (int)caseliée.getCoords().getX();
+			int y = (int)caseliée.getCoords().getY();
+			State state = State.SELECT_OK;
+			switch (step)
+			{
+			case 0: //Choix du placement d'un bateau
+				if (!direction)
 				{
+					if (x+taille > width)
+						state = State.SELECT_KO;
+					else
+					{
+						boolean check = true;
+						for (int i = 0; i<taille; i++)
+						{
+							check = check & (plateau.getState(x+i, y)==State.VIDE);
+						}
+						if (!check)
+							state = State.SELECT_KO;
+					}
 					for (int i = 0; i<taille; i++)
 					{
 						plateau.setState(x+i, y, state);
 					}
 				} else 
 				{
+					if (y+taille > height)
+						state = State.SELECT_KO;
+					else
+					{
+						boolean check = true;
+						for (int i = 0; i<taille; i++)
+						{
+							check = check & (plateau.getState(x, y+i)==State.VIDE);
+						}
+						if (!check)
+							state = State.SELECT_KO;
+					}
 					for (int i = 0; i<taille; i++)
 					{
 						plateau.setState(x, y+i, state);
 					}
 				}
-				this.mouseEntered(arg0);
 				break;
-			case MouseEvent.BUTTON2:
-				this.mouseExited(arg0);
-				direction = 1 - direction;
-				this.mouseEntered(arg0);
-			break;
-		}
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		Case caseliée = (Case) arg0.getSource();
-		int x = (int)caseliée.getCoords().getX();
-		int y = (int)caseliée.getCoords().getY();
-		State state = State.SELECT_OK;
-		if (direction ==0)
-		{
-			if (x+taille > 10)
-				state = State.SELECT_KO;
-			else
-			{
+			case 1: //Choix d'une case à viser
 				boolean check = true;
-				for (int i = 0; i<taille; i++)
-				{
-					check = check & (plateau.getState(x+i, y)==State.VIDE);
-				}
-				if (!check)
-					state = State.SELECT_KO;
-			}
-			for (int i = 0; i<taille; i++)
-			{
-				plateau.setState(x+i, y, state);
-			}
-		} else 
-		{
-			if (y+taille > 10)
-				state = State.SELECT_KO;
-			else
-			{
-				boolean check = true;
-				for (int i = 0; i<taille; i++)
-				{
-					check = check & (plateau.getState(x, y+i)==State.VIDE);
-				}
-				if (!check)
-					state = State.SELECT_KO;
-			}
-			for (int i = 0; i<taille; i++)
-			{
-				plateau.setState(x, y+i, state);
+				State s = plateau.getState(x, y);
+				/*if (state != State.VIDE)
+					state = State.SELECT_KO;*/
+				plateau.setState(x, y, state);
+				break;
 			}
 		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		Case caseliée = (Case) arg0.getSource();
-		int x = (int)caseliée.getCoords().getX();
-		int y = (int)caseliée.getCoords().getY();
-		if (direction ==0)
+		if (enable)
 		{
-				for (int i = 0; i<taille; i++)
-				{
-					plateau.setLastState(x+i, y);
-				}
-		} else 
-		{
-				for (int i = 0; i<taille; i++)
-				{
-					plateau.setLastState(x, y+i);
-				}
+			Case caseliée = (Case) arg0.getSource();
+			int x = (int)caseliée.getCoords().getX();
+			int y = (int)caseliée.getCoords().getY();
+			if (!direction)
+			{
+					for (int i = 0; i<taille; i++)
+					{
+						plateau.setLastState(x+i, y);
+					}
+			} else 
+			{
+					for (int i = 0; i<taille; i++)
+					{
+						plateau.setLastState(x, y+i);
+					}
+			}
 		}
 	}
 

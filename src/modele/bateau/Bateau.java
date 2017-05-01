@@ -7,17 +7,17 @@ public abstract class Bateau {
 	public static final boolean DIRECTION_HORISONTALE=true;
 	public static final boolean DIRECTION_VERTICALE=false;
 	
-	private String nom;
+	protected String nom;
 	
-	private int NbMunition;
+	protected int NbMunition;
 	
-	private int taille;
+	protected int taille;
 	
-	private boolean direction;
+	protected boolean direction;
 	
-	private Point position;
+	protected Point position;
 	
-	private int[] tableauVie;
+	protected int[] tableauVie;
 
 	public String getNom() {
 		return nom;
@@ -38,7 +38,6 @@ public abstract class Bateau {
 	public void setDirection(boolean direction) {
 		this.direction = direction;
 	}
-
 
 	public Point getPosition() {
 		return position;
@@ -78,5 +77,10 @@ public abstract class Bateau {
 			}
 		}
 		return res;
+	}
+	
+	public String toString()
+	{
+		return nom +" (Taille "+taille+")";
 	}
 }

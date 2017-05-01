@@ -1,4 +1,4 @@
-package Graphique;
+package graphique;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -12,10 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Modele.BatailleNavale;
+import modele.BatailleNavale;
+import modele.Modele;
+import modele.Terrain;
+import modele.strategie.Strategie;
+import modele.tir.Tir;
 
 public class NouveauNiveau extends JDialog {
-	public NouveauNiveau(JFrame jf, BatailleNavale bn)
+	public NouveauNiveau(VuePrincipale jf, BatailleNavale bn)
 	{
         super(jf, "Choix du nouveau niveau");
         
@@ -42,8 +46,8 @@ public class NouveauNiveau extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				jf.setModele(new Modele((Tir)modedetir.getSelectedItem(), (Strategie)stratJ1.getSelectedItem(), (Strategie)stratJ2.getSelectedItem(), (Terrain)epoque.getSelectedItem()));
 				nn.dispose();
-				//bn.
 			}
 			
 

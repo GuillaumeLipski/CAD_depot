@@ -1,8 +1,10 @@
-package Graphique;
+package graphique;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,12 +19,20 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import Modele.BatailleNavale;
+import modele.BatailleNavale;
+import modele.Modele;
+import modele.Terrain;
+import modele.bateau.Bateau;
+import modele.bateau.Corvette;
+import modele.bateau.Fregate;
+import modele.flotte.Flotte;
 
-public class VuePrincipale extends JFrame implements Observer{
+public class VuePrincipale extends JFrame{
 
 	PanelPlateau plateauj1, plateauj2;
+	PanelInformation infos;
 	BatailleNavale bn;
+	Modele m;
 	
 	
 	public VuePrincipale(BatailleNavale bn)
@@ -30,12 +40,27 @@ public class VuePrincipale extends JFrame implements Observer{
 
         super("Projet Toucan - animation des algorithmes de tris");
         
-        setSize(new Dimension(1500, 600));
-        setMinimumSize(new Dimension(1500, 600));
-        setMinimumSize(new Dimension(1500, 600));
+        setSize(new Dimension(1500, 500));
+        setMinimumSize(new Dimension(1500, 500));
+        setMinimumSize(new Dimension(1500, 500));
         
-		plateauj1 = new PanelPlateau(1);
-		plateauj2 = new PanelPlateau(2);
+        Bateau[] bateaux = new Bateau[5];
+        bateaux[0] = new Corvette(0,0);
+        bateaux[1] = new Fregate(1,1);
+        bateaux[2] = new Corvette(2,2);
+        bateaux[3] = new Fregate(3,3);
+        bateaux[4] = new Corvette(4,4);
+        int width = 10, height = 10;
+        Flotte f1, f2;
+        f1 = new Flotte(bateaux);
+        f2 = new Flotte(bateaux);
+        
+        Terrain t = new Terrain(width, height, f1, f2);
+        m = new Modele(null, null, null, t);
+        
+		plateauj1 = new PanelPlateau(1,width,height);
+		plateauj2 = new PanelPlateau(2,width,height);
+		infos = new PanelInformation(m);
 				
 		this.setBackground(Color.BLACK);
 		
@@ -62,14 +87,17 @@ public class VuePrincipale extends JFrame implements Observer{
 		
 		this.add(jmb, BorderLayout.PAGE_START);
 		JPanel pp = new JPanel();
-		pp.setLayout(new GridLayout(1,3,1,1));
+		pp.setLayout(new GridLayout());
 		pp.add(plateauj1);
+		pp.add(infos);
 		pp.add(plateauj2);
 		this.add(pp,  BorderLayout.CENTER);
 		
 		pack();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+		setModele(m);
+		m.setPlayer(1);
 	}
 	
 	
@@ -78,9 +106,12 @@ public class VuePrincipale extends JFrame implements Observer{
 		VuePrincipale v = new VuePrincipale(null);
 	}
 
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		
+	public void setModele(Modele modele) {
+		m = modele;
+		plateauj1.setModele(modele);
+		plateauj2.setModele(modele);
+		m.addObserver(plateauj1);
+		m.addObserver(plateauj2);
+		m.addObserver(infos);
 	}
 }

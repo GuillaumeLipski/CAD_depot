@@ -1,50 +1,60 @@
-package Graphique;
+package graphique;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
-import Controle.CaseClick;
-import Graphique.Case.State;
+import controle.CaseClick;
+import graphique.Case.State;
+import modele.Modele;
+import modele.Terrain;
 
-public class PanelPlateau extends JPanel {
+public class PanelPlateau extends JPanel  implements Observer{
 
 	int n_joueur;
 	Case[][] plateau;
+	int height;
+	int width;
 	CaseClick controleur;
-	char[] lettre = {' ','A','B','C','D','E','F','G','H','I','J'};
 	
-	public PanelPlateau(int n)
+	public PanelPlateau(int n, int h, int w)
 
 	{
 		super();
 		n_joueur = n;
 		this.setBackground(Color.BLACK);
-		this.setMinimumSize(new Dimension(600,600));
-		this.setSize(600,600);
-		this.setMaximumSize(new Dimension(600,600));
-		this.setLayout(new GridLayout(11,11,2,2));
-		plateau = new Case[10][10];
-		controleur = new CaseClick(this);
-		for (int i = 10; i >= 0; i--){
-			for(int j = -1; j < 10; j++)
+		this.setMinimumSize(new Dimension(1000,1000));
+		this.setSize(1000,1000);
+		this.setMaximumSize(new Dimension(1000,1000));
+		this.setLayout(new GridLayout(w+1,h+1,2,2));
+		plateau = new Case[h][w];
+		width = w;
+		height = h;
+		controleur = new CaseClick(this, w, h);
+		for (int i = h; i >= 0; i--){
+			for(int j = -1; j < w; j++)
 			{
 				Case jpp = new Case(j,i);
-				jpp.setSize(new Dimension(60,60));
+				jpp.setSize(new Dimension(100,100));
 				if (j == -1)
 				{
 					JTextPane jtp = new JTextPane();
-					jtp.setText(lettre[10-i]+"");
+					if (i == h)
+						jtp.setText(" ");
+					else
+						jtp.setText(""+(char)(('A'-1)+(h-i)));
 					jtp.setEditable(false);
 					jpp.add(jtp);
 					jpp.setBackground(Color.WHITE);
 					jpp.setState(State.PLOUF);
 				}
-				else if (i == 10) {
+				else if (i == h) {
 					JTextPane jtp = new JTextPane();
 					jtp.setText((j+1)+"");
 					jtp.setEditable(false);
@@ -68,14 +78,34 @@ public class PanelPlateau extends JPanel {
 	
 	public void setState(int x, int y, State state)
 	{
-		if (x < 10 && y < 10)
+		if (x < width && y < height)
 			plateau[y][x].setState(state);
 	}
 	
 	public void setLastState(int x, int y)
 	{
-		if (x < 10 && y < 10)
+		if (x < width && y < height)
 			plateau[y][x].setLastState();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		Modele m = (Modele)o;
+		int[][] p = m.getTerrain().getPlateau(n_joueur);
+		boolean same_player = n_joueur == m.getPlayerTurn();
+		for (int x = 0; x < width; x++)
+		{
+			for (int y = 0; y < height; y++)
+			{
+				plateau[y][x].setState(p[y][x], same_player);
+			}
+		}
+		controleur.enable(same_player);
+		controleur.setStep(m.getStep());
+	}
+
+	public void setModele(Modele modele) {
+		controleur.setModele(modele);
 	}
 }
 

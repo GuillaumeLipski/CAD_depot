@@ -4,9 +4,14 @@ import java.awt.Point;
 
 import modele.bateau.Bateau;
 
-public abstract class Flotte {
+public class Flotte {
 
 	private Bateau[] flotte;
+	
+	public Flotte(Bateau[] bateaux)
+	{
+		flotte = bateaux;
+	}
 	
 	public void setPosition(int id,int x,int y,boolean horizontale){
 		flotte[id].setDirection(horizontale);
@@ -22,6 +27,11 @@ public abstract class Flotte {
 	
 	public int getNbBateau(){
 		return flotte.length;
+	}
+	
+	public Bateau[] getListeBateau()
+	{
+		return flotte;
 	}
 	
 }
