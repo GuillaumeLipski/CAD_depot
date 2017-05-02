@@ -43,16 +43,9 @@ public class Recente extends Epoque{
 		return nom;
 	}
 
-	public String getApparanceParTaille(int taille) {
-		return null;
-	}
-
 	@Override
 	public String getNom() {
-		// TODO Auto-generated method stub
 		return nom;
 	}
-
-	public String toString() {return nom;}
 	
 }

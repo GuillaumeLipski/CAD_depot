@@ -1,8 +1,5 @@
 package modele.epoque;
 
-import modele.bateau.Bateau;
-import modele.flotte.Flotte;
-
 public abstract class Epoque {
 
 	Flotte flotte_type;
@@ -41,14 +38,10 @@ public abstract class Epoque {
 		flotte_type = f;
 	}
 	
-	public Flotte getFlotte()
-	{
-		Flotte new_flotte = new Flotte(flotte_type); 
-		return new_flotte;
-	}
+	public String getNom();
 	
 	public String toString()
 	{
-		return "nom";
+		return nom;
 	}
 }

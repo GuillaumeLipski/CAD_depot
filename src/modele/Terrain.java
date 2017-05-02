@@ -25,7 +25,6 @@ public class Terrain {
 		flottes = new Flotte[2];
 		flottes[0]=f1;
 		flottes[1]=f2;
-
 	}
 
 	public Terrain(int h, int l, Epoque e) {
@@ -91,7 +90,7 @@ public class Terrain {
 			{
 				for (int k = 0; k < b.getTaille(); k++)
 				{
-					if (b.isDirection())
+					if (b.getDirection())
 					{
 						plateau[j][pos.y][pos.x + k] = BKO;
 					}
@@ -103,7 +102,7 @@ public class Terrain {
 			} else
 			{
 				int l = 0;
-				if (b.isDirection())
+				if (b.getDirection())
 				{
 					l = p.x - pos.x;
 				}
@@ -150,7 +149,7 @@ public class Terrain {
 		{
 			for (int k = 0; k < b.getTaille(); k++)
 			{
-				if (b.isDirection())
+				if (b.getDirection())
 				{
 					plateau[i-1][p.y][p.x + k] = VID;
 				}
@@ -164,7 +163,7 @@ public class Terrain {
 		b.setDirection(direction);
 		for (int k = 0; k < b.getTaille(); k++)
 		{
-			if (b.isDirection())
+			if (b.getDirection())
 			{
 				plateau[i-1][position.y][position.x + k] = BOK;
 			}

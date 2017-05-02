@@ -1,83 +1,62 @@
 package modele.flotte;
 
 import java.awt.Point;
-import java.util.ArrayList;
 
 import modele.bateau.Bateau;
 import modele.bateau.Corvette;
 
 public class Flotte {
 
-	private ArrayList<Bateau> flotte;
+	private Bateau[] flotte;
 	
 	public static final Bateau[] PETITE_FLOTTE={new Corvette(),new Corvette(),new Corvette()};
 	
-	public Flotte()
-	{
-		flotte = new ArrayList<Bateau>();
-	}
-	
 	public Flotte(Bateau[] bateaux)
 	{
-		flotte = new ArrayList<Bateau>(bateaux.length);
+		flotte = new Bateau[bateaux.length];
 		for (int i = 0; i < bateaux.length; i++)
 		{
-			flotte.add(bateaux[i]);
-		}
-	}
-	
-	public Flotte(Flotte f)
-	{
-		int taille = f.getNbBateau();
-		flotte = new ArrayList<Bateau>(taille);
-		for (int i = 0; i < taille; i++)
-		{
-			flotte.add(new Bateau(f.getBateau(i)));
+			flotte[i] = bateaux[i];
+			System.out.println(flotte[i]);
 		}
 	}
 	
 	public void setPosition(int id,int x,int y,boolean horizontale){
-		flotte.get(id).setDirection(horizontale);
-		flotte.get(id).setPosition(new Point(x,y));
+		flotte[id].setDirection(horizontale);
+		flotte[id].setPosition(new Point(x,y));
 	}
 	
 	public Bateau getBateau(int id){
-		if(id>=0&&id<flotte.size())
+		if(id>=0&&id<flotte.length)
 		{
-			return flotte.get(id);
+			return flotte[id];
 		}
 		else
 			return null;
 	}
 	
-	public void add(Bateau b)
-	{
-		flotte.add(b);
-	}
-	
 	public int getNbBateau(){
-		return flotte.size();
+		return flotte.length;
 	}
 	
 	public Bateau[] getListeBateau()
 	{
-		Bateau[] b = new Bateau[0];
-		return flotte.toArray(b);
+		return flotte;
 	}
 	
 	public String toString()
 	{
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < flotte.size(); i++)
+		for (int i = 0; i < flotte.length; i++)
 		{
-			sb.append(flotte.get(i)+"`\n");
+			sb.append(flotte[i]+"`\n");
 		}
 		return sb.toString();
 	}
 	public Bateau testerTir(Point p, int puissance) {
-		for (int i = 0; i < flotte.size(); i++)
+		for (int i = 0; i < flotte.length; i++)
 		{
-			Bateau b = flotte.get(i);
+			Bateau b = flotte[i];
 			if (b.testerTir(p, puissance))
 				return b;
 		}
@@ -85,9 +64,9 @@ public class Flotte {
 	}
 	
 	public Bateau testerTir(Point p) {
-		for (int i = 0; i < flotte.size(); i++)
+		for (int i = 0; i < flotte.length; i++)
 		{
-			Bateau b = flotte.get(i);
+			Bateau b = flotte[i];
 			if (b.testerTir(p))
 				return b;
 		}
@@ -95,9 +74,9 @@ public class Flotte {
 	}
 
 	public boolean estDetruite() {
-		for (int i = 0; i < flotte.size(); i++)
+		for (int i = 0; i < flotte.length; i++)
 		{
-			if (!flotte.get(i).estDetruit())
+			if (!flotte[i].estDetruit())
 				return false;
 		}
 		return true;
