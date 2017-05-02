@@ -17,13 +17,15 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import modele.bateau.Bateau;
+import modele.epoque.Epoque;
 
 /**
  *
  * @author Aziasso_I
  */
 public class DAO_Configuration {
-    
+/*    
     
     ////////////////////////////// VARIABLES //////////////////////////////////
     
@@ -67,7 +69,7 @@ public class DAO_Configuration {
      * Permet de recuperer la liste des epoques disponibles dans le fichier de
      * configuration
      * @return la liste des epoques disponible
-     */
+     
     public HashMap<String, Epoque> getAllEpoques() {
         
         List listeEpoquesXML = racine.getChildren("epoque");
@@ -90,8 +92,8 @@ public class DAO_Configuration {
                 Bateau b = new Bateau();
                 Element courant2 = (Element) i2.next();
                 b.setNom(courant2.getChildText("nom"));
-                b.setLongueur(Integer.parseInt(courant2.getChildText("longueur")));
-                b.setPortee(Integer.parseInt(courant2.getChildText("portee")));
+                b.setLongueur(Integer.parseInt(courant2.getChildText("munition")));
+                b.setPortee(Integer.parseInt(courant2.getChildText("taille")));
                 Element images = courant2.getChild("images");
                 Iterator i3 = images.getChildren("image").iterator();
                 HashMap<Integer, String> imagesL = new HashMap<>();
@@ -121,7 +123,7 @@ public class DAO_Configuration {
      * donnee dans le fichier de configuration
      * @param epoque epoque dont on souhaite recuperer les bateaux
      * @return la liste des bateaux disponibles pour l'epoque donnee
-     */
+     
     public HashMap getAllBateaux(Epoque epoque) {
         
         return epoque.getListBateaux();
@@ -131,7 +133,7 @@ public class DAO_Configuration {
     
     /**
      * Permet d'ecrire le fichier de config s'il est introuvabel
-     */
+     
     private void ecrireFichConfig() {
         
         String s = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -391,7 +393,7 @@ public class DAO_Configuration {
         }
         
     } // ecrireFichConfig()
-
+*/
 } // class DAO_Configuration
     
 

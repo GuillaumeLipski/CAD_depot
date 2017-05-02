@@ -1,4 +1,3 @@
-
 package stockage;
 
 import java.io.File;
@@ -24,7 +23,7 @@ import org.jdom2.output.XMLOutputter;
  * @author Aziasso_I
  */
 public class DAO_Sauvegarde {
-    
+    /*
      ///////////////////////////// CONSTRUCTEUR ////////////////////////////////
     
     
@@ -44,7 +43,7 @@ public class DAO_Sauvegarde {
     /**
      * Permet de recuperer la liste de tous les profils disponibles
      * @return la liste des profils disponibles
-     */
+     
     public HashMap getAllProfils() {
 
         HashMap<String, Profil> liste = new HashMap<>();
@@ -95,14 +94,19 @@ public class DAO_Sauvegarde {
 
     } // getAllProfils()
 
+
+/*                    String[]uri=listOfFiles[i].split("\");
+                    String nom=uri[uro.length-1].replace(".xml","");
+                    liste.add(nom);*/
+
     
-    /*------------------------------ PROFIL ----------------------------------*/
+    /*------------------------------ PROFIL ----------------------------------
      
     
     /**
      * Permet de creer un nouveau profil
      * @param profil nouveau profil a enregistrer
-     */
+     
     public void saveProfil(Profil profil) {
 
         try {
@@ -253,7 +257,7 @@ public class DAO_Sauvegarde {
     /**
      * Permet de supprimer un profil
      * @param profil profil a supprimer
-     */
+     
     public void removeProfil(Profil profil) {
         
         String s = "users" + File.separator+profil.getNom() + ".xml";
@@ -267,7 +271,7 @@ public class DAO_Sauvegarde {
      * Permet de savoir si un profil du meme nom existe deja
      * @param nom nom a tester
      * @return TRUE si un profil ayant le meme nom existe deja, FALSE sinon on le crée
-     */
+     
     public boolean isExistingProfil(String nom) {  // Profil existant(String nom)
 
         Iterator iterator = this.getAllProfils().keySet().iterator();
@@ -286,7 +290,7 @@ public class DAO_Sauvegarde {
     } 
 
    
-    /*------------------------------- PARTIE ---------------------------------*/
+    /*------------------------------- PARTIE ---------------------------------
     
     
     /**
@@ -294,7 +298,7 @@ public class DAO_Sauvegarde {
      * @param id identifiant de la partie
      * @param profil profil dans lequel on souhaite recuperer une partie
      * @return la partie souhaitee
-     */
+     
     public Partie getPartie(String id, Profil profil) {
         
         Partie partie = new Partie();
@@ -469,5 +473,5 @@ public class DAO_Sauvegarde {
         
     } // getPartie(String id, Profil profil)
     
-    
+    */
 } // class DAO_Sauvegarde
