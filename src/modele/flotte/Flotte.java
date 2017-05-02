@@ -3,10 +3,13 @@ package modele.flotte;
 import java.awt.Point;
 
 import modele.bateau.Bateau;
+import modele.bateau.Corvette;
 
 public class Flotte {
 
 	private Bateau[] flotte;
+	
+	public static final Bateau[] PETITE_FLOTTE={new Corvette(),new Corvette(),new Corvette()};
 	
 	public Flotte(Bateau[] bateaux)
 	{
@@ -77,5 +80,9 @@ public class Flotte {
 				return false;
 		}
 		return true;
+	}
+	
+	public Bateau[] getDefaultFlotte(){
+		return null;
 	}
 }
