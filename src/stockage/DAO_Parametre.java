@@ -110,7 +110,7 @@ public class DAO_Parametre {
     /**
      * Permet d'ecrire le fichier parametre s'il n'existe pas 
      
-    private void ecrireFichParam() {
+    private void ecrireFichier_Param() {
         
         String s = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
                 + "<!--\n"

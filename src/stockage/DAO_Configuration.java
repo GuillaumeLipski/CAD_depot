@@ -93,8 +93,8 @@ public class DAO_Configuration {
                 Bateau b = new Bateau();
                 Element courant2 = (Element) i2.next();
                 b.setNom(courant2.getChildText("nom"));
-                b.setLongueur(Integer.parseInt(courant2.getChildText("longueur")));
-                b.setPortee(Integer.parseInt(courant2.getChildText("portee")));
+                b.setLongueur(Integer.parseInt(courant2.getChildText("munition")));
+                b.setPortee(Integer.parseInt(courant2.getChildText("taille")));
                 Element images = courant2.getChild("images");
                 Iterator i3 = images.getChildren("image").iterator();
                 HashMap<Integer, String> imagesL = new HashMap<>();
