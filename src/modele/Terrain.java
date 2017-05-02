@@ -32,7 +32,7 @@ public class Terrain {
 				Point p = b1.getPosition();
 				for (int k = 0; k < b1.getTaille(); k++)
 				{
-					if (b1.isDirection())
+					if (b1.getDirection())
 					{
 						plateau[0][p.y][p.x + k] = BOK;
 					}
@@ -48,7 +48,7 @@ public class Terrain {
 				Point p = b2.getPosition();
 				for (int k = 0; k < b2.getTaille(); k++)
 				{
-					if (b2.isDirection())
+					if (b2.getDirection())
 					{
 						plateau[1][p.y][p.x + k] = BOK;
 					}
@@ -105,7 +105,7 @@ public class Terrain {
 			{
 				for (int k = 0; k < b.getTaille(); k++)
 				{
-					if (b.isDirection())
+					if (b.getDirection())
 					{
 						plateau[j][pos.y][pos.x + k] = BKO;
 					}
@@ -117,7 +117,7 @@ public class Terrain {
 			} else
 			{
 				int l = 0;
-				if (b.isDirection())
+				if (b.getDirection())
 				{
 					l = p.x - pos.x;
 				}
@@ -140,7 +140,7 @@ public class Terrain {
 		{
 			for (int k = 0; k < b.getTaille(); k++)
 			{
-				if (b.isDirection())
+				if (b.getDirection())
 				{
 					plateau[i-1][p.y][p.x + k] = VID;
 				}
@@ -154,7 +154,7 @@ public class Terrain {
 		b.setDirection(direction);
 		for (int k = 0; k < b.getTaille(); k++)
 		{
-			if (b.isDirection())
+			if (b.getDirection())
 			{
 				plateau[i-1][position.y][position.x + k] = BOK;
 			}

@@ -29,12 +29,6 @@ public class Recente implements Epoque{
 	}
 
 	@Override
-	public String getApparanceParTaille(int taille) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getNom() {
 		// TODO Auto-generated method stub
 		return nom;

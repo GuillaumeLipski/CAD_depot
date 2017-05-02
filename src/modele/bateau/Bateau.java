@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Bateau {
+public abstract class Bateau {
 
 	public static final boolean DIRECTION_HORISONTALE=true;
 	public static final boolean DIRECTION_VERTICALE=false;
@@ -29,27 +29,6 @@ public class Bateau {
 	{
 		position = new Point(-1,-1);
 	}
-	
-	public Bateau(String nom, int taille, int munition, int vie)
-	{
-		this.nom = nom;
-		this.taille = taille;
-		this.NbMunition = munition;
-		this.tableauVie = new int[taille];
-		for (int i = 0; i < taille; i++)
-			tableauVie[i] = vie;
-	}
-	
-	public Bateau(Bateau b)
-	{
-		this.nom = b.getNom();
-		this.taille = b.getTaille();
-		this.NbMunition = b.getNbMunition();
-		this.tableauVie = new int[taille];
-		for (int i = 0; i < taille; i++)
-			tableauVie[i] = b.getTableauVie()[i];
-	}
-	
 	public String getNom() {
 		return nom;
 	}
@@ -62,7 +41,7 @@ public class Bateau {
 		return taille;
 	}
 
-	public boolean isDirection() {
+	public boolean getDirection() {
 		return direction;
 	}
 	

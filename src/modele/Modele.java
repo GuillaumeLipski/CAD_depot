@@ -14,7 +14,7 @@ public class Modele extends Observable implements Runnable{
 	private String nomPartie;
 
 	private Tir modeDeTir;
-	
+
 	private Strategie StrategieJ1,StrategieJ2;
 	
 	private Terrain terrain;
@@ -101,6 +101,10 @@ public class Modele extends Observable implements Runnable{
 	
 	public String getNomPartie() {
 		return nomPartie;
+	}
+	
+	public int getModeDeTir() {
+		return modeDeTir.getIdTir();
 	}
 
 	public void setNomPartie(String nomPartie) {

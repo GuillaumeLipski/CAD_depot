@@ -47,16 +47,4 @@ public class GameFactory {
     } // getDAO_Sauvegarde()
     
     
-    /**
-     * Permet d'avoir acces au fichier de sauvegarde
-     * @return la classe permettant l'acces au fichier de sauvegarde
-     */
-    public DAO_Sauvegarde getDAO_Sauvegarde() {
-        
-        return new DAO_Chargement();
-        
-    } // getDAO_Parametre()
-
-    
-    
 }
