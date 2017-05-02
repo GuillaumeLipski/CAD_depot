@@ -1,3 +1,4 @@
+
 package stockage;
 
 import java.io.File;
@@ -10,13 +11,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.lang.model.element.Element;
-import javax.swing.text.Document;
+import org.jdom2.Element;
+import org.jdom2.Document;
 import org.jdom2.Attribute;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+
+import graphique.Case;
 
 /**
  *
@@ -38,13 +41,41 @@ public class DAO_Sauvegarde {
 
     
     /*---------------------------- FONCTIONS ---------------------------------*/
-    
+	public class Partie{
+		String nom;
+		int id;
+		
+		public Partie()
+		{
+		}
+		public void setId(int i) {id = i;}
+		public void setNom(String n) {nom = n;}
+		public int getId() {return id;}
+		public String getNom() {return nom;}
+	}
+	
+	public class Profil{
+		String nom;
+		int id;
+		HashMap<String,Partie> parties;
+		
+		public Profil()
+		{
+		}
+		public void setId(int i) {id = i;}
+		public void setNom(String n) {nom = n;}
+		public void setParties(HashMap<String,Partie> p) {parties = p;}
+		public int getId() {return id;}
+		public String getNom() {return nom;}
+	}
+	
+
     
     /**
      * Permet de recuperer la liste de tous les profils disponibles
      * @return la liste des profils disponibles
-     
-    public HashMap getAllProfils() {
+     */
+    /*public HashMap getAllProfils() {
 
         HashMap<String, Profil> liste = new HashMap<>();
         File folder = new File("users");
@@ -61,7 +92,7 @@ public class DAO_Sauvegarde {
                     
                     // ID
                     Element id = rootNode.getChild("id");
-                    p.setId(id.getAttributeValue("id"));
+                    p.setId(Integer.parseInt(id.getAttributeValue("id")));
                     
                     // Nom
                     Element nom = rootNode.getChild("nom");
@@ -92,12 +123,7 @@ public class DAO_Sauvegarde {
         
         return liste;
 
-    } // getAllProfils()
-
-
-/*                    String[]uri=listOfFiles[i].split("\");
-                    String nom=uri[uro.length-1].replace(".xml","");
-                    liste.add(nom);*/
+    } // getAllProfils()*/
 
     
     /*------------------------------ PROFIL ----------------------------------
@@ -106,8 +132,8 @@ public class DAO_Sauvegarde {
     /**
      * Permet de creer un nouveau profil
      * @param profil nouveau profil a enregistrer
-     
-    public void saveProfil(Profil profil) {
+     */
+    /*public void saveProfil(Profil profil) {
 
         try {
  
@@ -251,13 +277,13 @@ public class DAO_Sauvegarde {
               System.out.println(io.getMessage());
         }
       
-    } // fin saveProfil(Profil profil)
+    } // fin saveProfil(Profil profil)*/
     
     
     /**
      * Permet de supprimer un profil
      * @param profil profil a supprimer
-     
+     */
     public void removeProfil(Profil profil) {
         
         String s = "users" + File.separator+profil.getNom() + ".xml";
@@ -271,8 +297,8 @@ public class DAO_Sauvegarde {
      * Permet de savoir si un profil du meme nom existe deja
      * @param nom nom a tester
      * @return TRUE si un profil ayant le meme nom existe deja, FALSE sinon on le crée
-     
-    public boolean isExistingProfil(String nom) {  // Profil existant(String nom)
+     */
+/*    public boolean isExistingProfil(String nom) {  // Profil existant(String nom)
 
         Iterator iterator = this.getAllProfils().keySet().iterator();
         while (iterator.hasNext()) {
@@ -287,7 +313,7 @@ public class DAO_Sauvegarde {
 
         return false;
 
-    } 
+    } */
 
    
     /*------------------------------- PARTIE ---------------------------------
@@ -298,8 +324,8 @@ public class DAO_Sauvegarde {
      * @param id identifiant de la partie
      * @param profil profil dans lequel on souhaite recuperer une partie
      * @return la partie souhaitee
-     
-    public Partie getPartie(String id, Profil profil) {
+     */
+    /*public Partie getPartie(String id, Profil profil) {
         
         Partie partie = new Partie();
         File folder = new File("users");
@@ -470,7 +496,6 @@ public class DAO_Sauvegarde {
         partie.initialisationPorteeCases();
         return partie;
         
-    } // getPartie(String id, Profil profil)
+    } // getPartie(String id, Profil profil)*/
     
-    */
 } // class DAO_Sauvegarde
