@@ -11,6 +11,8 @@ import modele.tir.Tir;
 
 public class Modele extends Observable implements Runnable{
 
+	private String nomPartie;
+
 	private Tir modeDeTir;
 	
 	private Strategie StrategieJ1,StrategieJ2;
@@ -34,6 +36,17 @@ public class Modele extends Observable implements Runnable{
 		terrain=ter;
 		player = 1;
 		step = 0;
+		nomPartie="default";
+	}
+	
+	public Modele(Tir mdt,Strategie j1,Strategie j2,Terrain ter,String nom){
+		modeDeTir=mdt;
+		StrategieJ1=j1;
+		StrategieJ2=j2;
+		terrain=ter;
+		player = 1;
+		step = 0;
+		nomPartie=nom;
 	}
 		
 	public synchronized void demanderPositionTir(int idJoueur){
@@ -84,6 +97,14 @@ public class Modele extends Observable implements Runnable{
 	public int getPlayerTurn()
 	{
 		return player;
+	}
+	
+	public String getNomPartie() {
+		return nomPartie;
+	}
+
+	public void setNomPartie(String nomPartie) {
+		this.nomPartie = nomPartie;
 	}
 	
 	public Terrain getTerrain()
