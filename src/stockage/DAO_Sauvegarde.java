@@ -338,15 +338,14 @@ public class DAO_Sauvegarde {
                             parametre.setMajPortee(majPortee);
                             Epoque epoque = DAOFactory.getInstance().getDAO_Configuration().getAllEpoques().get(param.getChildText("nomEpoque"));
                             parametre.setEpoque(epoque);
-                            partie.setParametre(parametre);
 
                             // Joueur J1
                             Element j1 = (Element) partieElt.getChild("joueur1");
                             Joueur joueur1 = new JoueurHumain();
                             joueur1.setPartie(partie);
                             joueur1.setNom(j1.getChildText("nom"));
-                            joueur1.setNbTirsGagnant(Integer.parseInt(j1.getChildText("nbTirsGagnant")));
-                            joueur1.setNbTirsPerdant(Integer.parseInt(j1.getChildText("nbTirsPerdant")));
+                            //joueur1.setNbTirsGagnant(Integer.parseInt(j1.getChildText("nbTirsGagnant")));
+                            //joueur1.setNbTirsPerdant(Integer.parseInt(j1.getChildText("nbTirsPerdant")));
                             List listCasesXML = j1.getChildren("case");
                             ArrayList<Case> cases = new ArrayList<>();
                             HashMap<String,Bateau> bateauxJ1 = new HashMap();
@@ -361,9 +360,9 @@ public class DAO_Sauvegarde {
 
                                 } else {
 
-                                    if(bateauxJ1.containsKey(((Bateau)DAOFactory.getInstance().getDAO_Configuration().getAllBateaux(epoque).get(caseElt.getChildText("bateau"))).getNom())) {
+                                    if(bateauxJ1.containsKey(((Bateau)Factory.getInstance().getDAO_Configuration().getAllBateaux(epoque).get(caseElt.getChildText("bateau"))).getNom())) {
                                         // On a deja memorise le bateau, alors on cree une CaseBateau a partir de ce dernier
-                                        c = new CaseBateau(bateauxJ1.get(((Bateau)DAOFactory.getInstance().getDAO_Configuration().getAllBateaux(epoque).get(caseElt.getChildText("bateau"))).getNom()),partie);
+                                        c = new CaseBateau(bateauxJ1.get(((Bateau)Factory.getInstance().getDAO_Configuration().getAllBateaux(epoque).get(caseElt.getChildText("bateau"))).getNom()),partie);
                                     } else {
                                         // Le bateau n'a pas encore ete memorise, on l'ajoute a la liste
                                         Bateau bateau = new Bateau(((Bateau)DAOFactory.getInstance().getDAO_Configuration().getAllBateaux(epoque).get(caseElt.getChildText("bateau"))));

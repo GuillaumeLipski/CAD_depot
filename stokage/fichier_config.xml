@@ -3,6 +3,11 @@
  L'id des images bateaux doit commencer par 1 et les id suivants des images doivent suivre dans 
  l'ordre croissant -->
  <partie>
+	<taillePartie>
+		<tailleHorizontale>20</tailleHorizontale>
+		<tailleVerticale>20</tailleVerticale>
+	</taillePartie>
+	<modeTir>1</modeTir>
     <epoque>
         <nom>Epoque1700</nom>
         <image>Epoque1700.jpg</image>

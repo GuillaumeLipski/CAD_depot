@@ -5,28 +5,28 @@ package stockage;
  *
  * @author Aziasso_I
  */
-public class DAOFactory {
+public class GameFactory {
     
     
      /*----------------------- VARIABLES --------------------------------*/
     
     
-    private static final DAOFactory INSTANCE = new DAOFactory();
+    private static final GameFactory INSTANCE = new GameFactory();
 
     
     /*----------------------- INITAILAISATION --------------------------------*/
     
     
-    private DAOFactory() {
+    private GameFactory() {
 
     
-    } // DAOFactory()
+    } // GameFactory()
 
     
     /** Point d'accès pour l'instance unique du singleton
       * @return une instance du singleton 
       */
-    public static DAOFactory getInstance() {	
+    public static GameFactory getInstance() {	
         
         return INSTANCE;
         
@@ -34,17 +34,6 @@ public class DAOFactory {
     
     
   /*-------------------------------- FONCTIONS --------------------------------*/
-
-    
-    /**
-     * Permet d'avoir acces au fichier de configuration
-     * @return la classe permettant l'acces au fichier de configuration
-     */
-    public DAO_Configuration getDAO_Configuration() {
-        
-        return new DAO_Configuration();
-        
-    } // getDAO_Configuration()
 
     
     /**
@@ -59,12 +48,12 @@ public class DAOFactory {
     
     
     /**
-     * Permet d'avoir acces au fichier des parametres
-     * @return la classe permettant l'acces au fichier de parametre
+     * Permet d'avoir acces au fichier de sauvegarde
+     * @return la classe permettant l'acces au fichier de sauvegarde
      */
-    public DAO_Parametre getDAO_Parametre() {
+    public DAO_Sauvegarde getDAO_Sauvegarde() {
         
-        return new DAO_Parametre();
+        return new DAO_Chargement();
         
     } // getDAO_Parametre()
 
