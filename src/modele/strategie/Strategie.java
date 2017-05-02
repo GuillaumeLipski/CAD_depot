@@ -2,10 +2,16 @@ package modele.strategie;
 
 import java.awt.Point;
 
-public interface Strategie {
+import modele.Modele;
+import modele.Terrain;
+import modele.bateau.Bateau;
 
-	public Point getPlacementBateau(int xmax,int ymax);
+public interface Strategie {
 	
-	public Point getPlacementTir(int xmax,int ymax);
+	public void setModele(Modele m);
+	
+	public void placerBateau(int njoueur, Terrain t,int nbateau);
+
+	public void choixTir(int joueur, Terrain t);
 	
 }

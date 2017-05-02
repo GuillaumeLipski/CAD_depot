@@ -35,38 +35,20 @@ public class VuePrincipale extends JFrame{
 	PanelInformation infos;
 	BatailleNavale bn;
 	Modele m;
+	int width = 10;
+	int height = 10;
 	
 	
-	public VuePrincipale(BatailleNavale bn)
+	public VuePrincipale()
 	{
 
-        super("Projet Toucan - animation des algorithmes de tris");
+        super("Bataille Navale");
         
         setSize(new Dimension(1500, 500));
         setMinimumSize(new Dimension(1500, 500));
         setMinimumSize(new Dimension(1500, 500));
         
-        Bateau[] bateaux = new Bateau[6];
-        bateaux[0] = new Corvette();
-        bateaux[1] = new Corvette();
-        bateaux[2] = new Patrouilleur();
-        bateaux[3] = new Patrouilleur();
-        bateaux[4] = new PorteAvion();
-        bateaux[5] = new Fregate();
-        int width = 10, height = 10;
-        Flotte f1, f2;
-        f1 = new Flotte(bateaux);
-        bateaux = new Bateau[6];
-        bateaux[0] = new Corvette();
-        bateaux[1] = new Corvette();
-        bateaux[2] = new Patrouilleur();
-        bateaux[3] = new Patrouilleur();
-        bateaux[4] = new PorteAvion();
-        bateaux[5] = new Fregate();
-        f2 = new Flotte(bateaux);
-        
-        Terrain t = new Terrain(width, height, f1, f2);
-        m = new Modele(null, null, null, t);
+        m = new Modele(null);
         
 		plateauj1 = new PanelPlateau(1,width,height);
 		plateauj2 = new PanelPlateau(2,width,height);
@@ -78,11 +60,12 @@ public class VuePrincipale extends JFrame{
 		JMenuBar jmb = new JMenuBar();
 		JMenu jm = new JMenu("Fichier");
 		JMenuItem nouveau = new JMenuItem("Nouveau");
+		VuePrincipale p = this;
 		nouveau.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				NouveauNiveau nn = new NouveauNiveau(null, bn);
+				NouveauNiveau nn = new NouveauNiveau(p);
 				
 			}
 			
@@ -113,7 +96,7 @@ public class VuePrincipale extends JFrame{
 	
 	public void main(String[] args)
 	{
-		VuePrincipale v = new VuePrincipale(null);
+		VuePrincipale v = new VuePrincipale();
 	}
 
 	public void setModele(Modele modele) {

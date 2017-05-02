@@ -19,6 +19,7 @@ public class Flotte {
 	
 	public Flotte(Bateau[] bateaux)
 	{
+		flotte = new ArrayList<Bateau>(bateaux.length);
 		for (int i = 0; i < bateaux.length; i++)
 		{
 			flotte.add(bateaux[i]);
@@ -60,7 +61,8 @@ public class Flotte {
 	
 	public Bateau[] getListeBateau()
 	{
-		return (Bateau[]) flotte.toArray();
+		Bateau[] b = new Bateau[0];
+		return flotte.toArray(b);
 	}
 	
 	public String toString()

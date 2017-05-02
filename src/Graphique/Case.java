@@ -43,6 +43,7 @@ public class Case extends JPanel {
 		super();
 		p = new Point(x,y);
 	}
+	
 	public void paintComponent(Graphics g) {
           super.paintComponent(g);
           if (image_bateau != null && visible)
@@ -52,6 +53,7 @@ public class Case extends JPanel {
 	          g.drawImage(image_bateau,0,0,width, height, this);
           }
     } 
+	
 	public Point getCoords()
 	{
 		return p;
@@ -148,5 +150,6 @@ public class Case extends JPanel {
 				setState(State.PLOUF);
 				break;
 		}
+		paintComponent(this.getGraphics());
 	}
 }

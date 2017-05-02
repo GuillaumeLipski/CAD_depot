@@ -1,19 +1,16 @@
 package modele.bateau;
 
-import java.awt.Point;
-
-public class Corvette extends Bateau {
-
-	public Corvette()
+public class Nef extends Bateau {
+	
+	public Nef()
 	{
 		super();
-		nom = "Corvette";
+		nom = "Nef";
 		NbMunition = 5;
 		taille = 2;
 		direction = true;
 		tableauVie = new int[taille];
 		for (int i = 0 ; i < taille; i++)
-			tableauVie[i] = 2;
-		position = new Point(-1,-1);
+			tableauVie[i] = 1;
 	}
 }

@@ -3,6 +3,7 @@ package modele;
 import java.awt.Point;
 
 import modele.bateau.Bateau;
+import modele.epoque.Epoque;
 import modele.flotte.Flotte;
 
 public class Terrain {
@@ -17,48 +18,23 @@ public class Terrain {
 	
 	private int VID = 0, BOK = 1, BTO = 2, BTT = 3, BKO = 4, PLF = 5;
 	
-	public Terrain(int h, int l,Flotte f1,Flotte f2){
+	public Terrain(int h, int l,Flotte f1, Flotte f2){
 		hauteur=h;
 		largeur=l;
 		plateau = new int[2][h][l];
 		flottes = new Flotte[2];
 		flottes[0]=f1;
 		flottes[1]=f2;
-		/*for (int i = 0; i < flottes[0].getNbBateau(); i++)
-		{
-			Bateau b1 = flottes[0].getBateau(i);
-			if (b1 != null)
-			{
-				Point p = b1.getPosition();
-				for (int k = 0; k < b1.getTaille(); k++)
-				{
-					if (b1.isDirection())
-					{
-						plateau[0][p.y][p.x + k] = BOK;
-					}
-					else 
-					{
-						plateau[0][p.y + k][p.x] = BOK;
-					}
-				}
-			}
-			Bateau b2 = flottes[1].getBateau(i);
-			if (b2 != null)
-			{
-				Point p = b2.getPosition();
-				for (int k = 0; k < b2.getTaille(); k++)
-				{
-					if (b2.isDirection())
-					{
-						plateau[1][p.y][p.x + k] = BOK;
-					}
-					else 
-					{
-						plateau[1][p.y + k][p.x] = BOK;
-					}
-				}
-			}
-		}*/
+
+	}
+
+	public Terrain(int h, int l, Epoque e) {
+		hauteur=h;
+		largeur=l;
+		plateau = new int[2][h][l];
+		flottes = new Flotte[2];
+		flottes[0]= new Flotte(e.getFlotte());
+		flottes[1]= new Flotte(e.getFlotte());
 	}
 
 	public Flotte getJ1() {
@@ -85,6 +61,16 @@ public class Terrain {
 			return true;
 		if (flottes[1].estDetruite())
 			return true;
+		return false;
+	}
+	
+	public boolean tirValide(int i, Point p)
+	{
+		int j = 1 - (i-1);
+		if (plateau[j][p.y][p.x] < 3)
+		{
+			return true;
+		}
 		return false;
 	}
 	
@@ -133,6 +119,30 @@ public class Terrain {
 			}
 		}
 	}
+	
+	public boolean placementValide(int i, int nb, Point position, boolean direction)
+	{
+		boolean res = true;
+		Bateau b = flottes[i-1].getBateau(nb);
+		Point p = position;
+		if (direction && (p.x + b.getTaille() >= largeur))
+			return false;
+		if (!direction && (p.y + b.getTaille() >= hauteur))
+			return false;
+		for (int k = 0; k < b.getTaille(); k++)
+		{
+			if (direction)
+			{
+				res = res && (plateau[i-1][p.y][p.x + k] == VID);
+			}
+			else 
+			{
+				res = res && (plateau[i-1][p.y + k][p.x] == VID);
+			}
+		}
+		return res;
+	}
+	
 	public void updatePlacement(int i, int nb, Point position, boolean direction) {
 		Bateau b = flottes[i-1].getBateau(nb);
 		Point p = b.getPosition();

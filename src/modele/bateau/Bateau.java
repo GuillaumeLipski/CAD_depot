@@ -46,6 +46,7 @@ public class Bateau {
 		this.taille = b.getTaille();
 		this.NbMunition = b.getNbMunition();
 		this.tableauVie = new int[taille];
+		this.position = new Point(b.getPosition());
 		for (int i = 0; i < taille; i++)
 			tableauVie[i] = b.getTableauVie()[i];
 	}
@@ -127,7 +128,7 @@ public class Bateau {
 	
 	public String toString()
 	{
-		return nom +" (Taille "+taille+" en ["+position.x+","+position.y+"])";
+		return nom +" (Taille "+taille+") ";
 	}
 		
 	public Image getImage(int i)
@@ -135,7 +136,6 @@ public class Bateau {
 		String res = "/"+nom+""+(i+1)+".png";
 	    if (!direction)
 	    	res = "/"+nom+""+(i+1)+"r.png";
-		System.out.print(res);
 	    java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
 	    java.net.URL url = getClass().getResource(res);
 		Image image =  toolkit.getImage(url);

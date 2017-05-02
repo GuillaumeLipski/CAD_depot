@@ -95,41 +95,47 @@ public class PanelPlateau extends JPanel  implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		Modele m = (Modele)o;
-		if (arg != null && arg instanceof String)
+		if (m != null & m.getTerrain()!=null)
 		{
-			Flotte f = m.getTerrain().getFlotte(n_joueur);
-			for (int i = 0; i < f.getNbBateau(); i++)
+			if (arg != null && arg instanceof String)
 			{
-				Bateau b = f.getBateau(i);
-				Point p = b.getPosition();
-				for (int k = 0; k < b.getTaille(); k++)
+				Flotte f = m.getTerrain().getFlotte(n_joueur);
+				for (int i = 0; i < f.getNbBateau(); i++)
 				{
-					if (b.isDirection())
+					Bateau b = f.getBateau(i);
+					Point p = b.getPosition();
+					if (p.x >=0 && p.y >= 0)
 					{
-						plateau[p.y][p.x + k].setImage(b.getImage(k));
-					}
-					else 
-					{
-						plateau[p.y + k][p.x].setImage(b.getImage(k));
+						for (int k = 0; k < b.getTaille(); k++)
+						{
+							if (b.isDirection())
+							{
+								plateau[p.y][p.x + k].setImage(b.getImage(k));
+							}
+							else 
+							{
+								plateau[p.y + k][p.x].setImage(b.getImage(k));
+							}
+						}
 					}
 				}
 			}
-		}
-		int[][] p = m.getTerrain().getPlateau(n_joueur);
-		boolean enable = (n_joueur == m.getPlayerTurn());
-		int step = m.getStep();
-		for (int x = 0; x < width; x++)
-		{
-			for (int y = 0; y < height; y++)
+			int[][] p = m.getTerrain().getPlateau(n_joueur);
+			boolean enable = (n_joueur == m.getPlayerTurn());
+			int step = m.getStep();
+			for (int x = 0; x < width; x++)
 			{
-				plateau[y][x].setState(p[y][x], enable);
+				for (int y = 0; y < height; y++)
+				{
+					plateau[y][x].setState(p[y][x], enable);
+				}
 			}
+			if (step != 0)
+				enable = !enable;
+			controleur.enable(enable);
+			controleur.setStep(step);
+			controleur.setTaille(m.getTaille());
 		}
-		if (step != 0)
-			enable = !enable;
-		controleur.enable(enable);
-		controleur.setStep(step);
-		controleur.setTaille(m.getTaille());
 	}
 
 	public void setModele(Modele modele) {

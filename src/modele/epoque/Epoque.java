@@ -3,7 +3,7 @@ package modele.epoque;
 import modele.bateau.Bateau;
 import modele.flotte.Flotte;
 
-public class Epoque {
+public abstract class Epoque {
 
 	Flotte flotte_type;
 	String nom, epoque;
@@ -47,4 +47,8 @@ public class Epoque {
 		return new_flotte;
 	}
 	
+	public String toString()
+	{
+		return "nom";
+	}
 }

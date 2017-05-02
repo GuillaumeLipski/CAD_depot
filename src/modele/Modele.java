@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.util.Observable;
 
 import modele.bateau.Bateau;
+import modele.epoque.Epoque;
 import modele.flotte.Flotte;
 import modele.strategie.Strategie;
 import modele.tir.Tir;
@@ -15,7 +16,7 @@ public class Modele extends Observable implements Runnable{
 
 	private Tir modeDeTir;
 	
-	private Strategie StrategieJ1,StrategieJ2;
+	private Strategie[] Strategies;
 	
 	private Terrain terrain;
 	
@@ -29,11 +30,14 @@ public class Modele extends Observable implements Runnable{
 	
 	private boolean waitPosition;
 	
-	public Modele(Tir mdt,Strategie j1,Strategie j2,Terrain ter){
+	public Modele(Tir mdt,Strategie j1,Strategie j2,Epoque epoque){
 		modeDeTir=mdt;
-		StrategieJ1=j1;
-		StrategieJ2=j2;
-		terrain=ter;
+		Strategies = new Strategie[2];
+		j1.setModele(this);
+		Strategies[0]=j1;
+		j2.setModele(this);
+		Strategies[1]=j2;
+		terrain= new Terrain(10,10,epoque);
 		player = 1;
 		step = 0;
 		nomPartie="default";
@@ -41,14 +45,24 @@ public class Modele extends Observable implements Runnable{
 	
 	public Modele(Tir mdt,Strategie j1,Strategie j2,Terrain ter,String nom){
 		modeDeTir=mdt;
-		StrategieJ1=j1;
-		StrategieJ2=j2;
+		Strategies = new Strategie[2];
+		j1.setModele(this);
+		Strategies[0]=j1;
+		j2.setModele(this);
+		Strategies[1]=j2;
 		terrain=ter;
 		player = 1;
 		step = 0;
 		nomPartie=nom;
 	}
 		
+	public Modele(Terrain t) {
+		terrain=t;
+		player = 1;
+		step = 0;
+		nomPartie="New";
+	}
+
 	public synchronized void demanderPositionTir(int idJoueur){
 		this.setChanged();
 		notifyObservers();
@@ -75,7 +89,6 @@ public class Modele extends Observable implements Runnable{
 		notify();
 	}
 	
-	//je ne sais plus a quoi ca sert
 	public synchronized void demanderPlacementBateau(int idJoueur,int nbateau){
 		this.setChanged();
 		notifyObservers();
@@ -142,14 +155,14 @@ public class Modele extends Observable implements Runnable{
 		for (int i = 0; i < J1.getNbBateau(); i++)
 		{
 			bateauSelectionne = J1.getBateau(i);
-			demanderPlacementBateau(1, i);
+			Strategies[0].placerBateau(1,terrain, i);
 		}
 		setPlayer(2);
 		Flotte J2 = terrain.getJ2();
 		for (int i = 0; i < J2.getNbBateau(); i++)
 		{
 			bateauSelectionne = J2.getBateau(i);
-			demanderPlacementBateau(2, i);
+			Strategies[1].placerBateau(2,terrain, i);
 		}
 		bateauSelectionne = null;
 		step = 1;
@@ -158,7 +171,7 @@ public class Modele extends Observable implements Runnable{
 		while (!terrain.estTermine())
 		{
 			setPlayer(1 - (player - 1) + 1);
-			demanderPositionTir(player);
+			modeDeTir.tirer(Strategies[player-1],player, terrain);
 		}
 	}
 	

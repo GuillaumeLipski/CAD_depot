@@ -21,7 +21,7 @@ import modele.bateau.Corvette;
 public class PanelInformation extends JPanel  implements Observer {
 	
 	ListeBateau lj1, lj2;
-	JTextField nj1, nj2, nt1, nt2, ntr1, ntr2;
+	JTextField nj1, nj2, nt1, nt2, ntr1, ntr2,step;
 	Modele m;
 	
 	public PanelInformation(Modele mo)
@@ -58,8 +58,14 @@ public class PanelInformation extends JPanel  implements Observer {
 		ntr2.setEnabled(false);
 		ntr2.setHorizontalAlignment(JLabel.CENTER);
 		
+		JLabel jle = new JLabel("Etape");
+		jle.setHorizontalAlignment(JLabel.CENTER);
+		step = new JTextField("WAIT");
+		step.setHorizontalAlignment(JLabel.CENTER);
+		step.enable(false);
+		
 		JPanel pinfo = new JPanel();
-		pinfo.setLayout(new GridLayout(3,3));
+		pinfo.setLayout(new GridLayout(5,3));
 		pinfo.add(nj1);
 		pinfo.add(labeljoueur);
 		pinfo.add(nj2);
@@ -69,6 +75,12 @@ public class PanelInformation extends JPanel  implements Observer {
 		pinfo.add(ntr1);
 		pinfo.add(labeltirr);
 		pinfo.add(ntr2);
+		pinfo.add(new JLabel());
+		pinfo.add(jle);
+		pinfo.add(new JLabel());
+		pinfo.add(new JLabel());
+		pinfo.add(step);
+		pinfo.add(new JLabel());
 		this.add(pinfo);
 		
 		JPanel pliste = new JPanel();
@@ -82,33 +94,36 @@ public class PanelInformation extends JPanel  implements Observer {
 		pliste.add(labelliste, BorderLayout.PAGE_START);
 		pliste.add(lj1, BorderLayout.LINE_START);
 		pliste.add(lj2, BorderLayout.LINE_END);
-		JButton test = new JButton("Test");
-		test.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				mo.setPlayer((1-(mo.getPlayerTurn()-1))+1);	
-				Thread t = new Thread(mo);
-				t.start();
-			}
-			
-
-        });
-		pliste.add(test, BorderLayout.PAGE_END);
 		this.add(pliste);
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		Modele m = (Modele)arg0;
-		lj1.setListData(m.getTerrain().getJ1().getListeBateau());
-		lj2.setListData(m.getTerrain().getJ2().getListeBateau());
-		if (m.getPlayerTurn() == 1)
+		if (m != null && m.getTerrain()!=null)
 		{
-			nj1.setBackground(new Color(10,135,10));
-			nj2.setBackground(Color.BLACK);
-		} else {
-			nj2.setBackground(new Color(10,135,10));
-			nj1.setBackground(Color.BLACK);
+			lj1.setListData(m.getTerrain().getJ1().getListeBateau());
+			lj2.setListData(m.getTerrain().getJ2().getListeBateau());
+			if (m.getPlayerTurn() == 1)
+			{
+				nj1.setBackground(new Color(10,135,10));
+				nj2.setBackground(Color.BLACK);
+			} else {
+				nj2.setBackground(new Color(10,135,10));
+				nj1.setBackground(Color.BLACK);
+			}
+			switch (m.getStep())
+			{
+				case 0:
+					step.setText("Placer votre bateau");
+					break;
+				case 1:
+					step.setText("Tirer");
+					break;
+				case 2:
+					step.setText("Choisir un bateau");
+					break;
+			}
 		}
 	}
 }

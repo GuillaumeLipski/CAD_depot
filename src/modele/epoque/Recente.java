@@ -1,12 +1,27 @@
 package modele.epoque;
 
-public class Recente implements Epoque{
-	
-	private final String nom="Recente";
+import modele.bateau.Bateau;
+import modele.bateau.Corvette;
+import modele.bateau.Fregate;
+import modele.bateau.Patrouilleur;
+import modele.bateau.PorteAvion;
+import modele.flotte.Flotte;
 
-	@Override
+public class Recente extends Epoque{
+
+	public Recente()
+	{
+		nom = "Moderne";
+		flotte_type = new Flotte();
+		flotte_type.add(new Corvette());
+		flotte_type.add(new Corvette());
+		flotte_type.add(new Patrouilleur());
+		flotte_type.add(new Patrouilleur());
+		flotte_type.add(new PorteAvion());
+		flotte_type.add(new Fregate());
+	}
+	
 	public String getNomParTaille(int taille) {
-		// TODO Auto-generated method stub
 		String nom="";
 		switch(taille){
 		case 1:
@@ -28,9 +43,7 @@ public class Recente implements Epoque{
 		return nom;
 	}
 
-	@Override
 	public String getApparanceParTaille(int taille) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -40,6 +53,6 @@ public class Recente implements Epoque{
 		return nom;
 	}
 
-	
+	public String toString() {return nom;}
 	
 }
