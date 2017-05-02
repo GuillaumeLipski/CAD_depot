@@ -12,13 +12,14 @@ public class Recente extends Epoque{
 	public Recente()
 	{
 		nom = "Moderne";
-		flotte_type = new Flotte();
-		flotte_type.add(new Corvette());
-		flotte_type.add(new Corvette());
-		flotte_type.add(new Patrouilleur());
-		flotte_type.add(new Patrouilleur());
-		flotte_type.add(new PorteAvion());
-		flotte_type.add(new Fregate());
+		Bateau[] bateaux = new Bateau[6];
+		bateaux[0] = new Corvette();
+		bateaux[1] = new Corvette();
+		bateaux[2] = new Patrouilleur();
+		bateaux[3] = new Patrouilleur();
+		bateaux[4] = new PorteAvion();
+		bateaux[5] = new Fregate();
+		flotte_type = new Flotte(bateaux);
 	}
 	
 	public String getNomParTaille(int taille) {

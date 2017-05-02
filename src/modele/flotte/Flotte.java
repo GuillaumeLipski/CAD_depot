@@ -21,6 +21,16 @@ public class Flotte {
 		}
 	}
 	
+	public Flotte(Flotte f)
+	{
+		flotte = new Bateau[f.getNbBateau()];
+		for (int i = 0; i < f.getNbBateau(); i++)
+		{
+			flotte[i] = new Bateau(f.getBateau(i));
+			System.out.println(flotte[i]);
+		}
+	}
+	
 	public void setPosition(int id,int x,int y,boolean horizontale){
 		flotte[id].setDirection(horizontale);
 		flotte[id].setPosition(new Point(x,y));

@@ -17,4 +17,9 @@ public class TirClassique implements Tir{
 		strategie.choixTir(player, terrain);
 	}
 
+	@Override
+	public int getId() {
+		return 1;
+	}
+
 }

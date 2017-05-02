@@ -11,4 +11,6 @@ public interface Tir {
 
 	public void tirer(Strategie strategie, int player, Terrain terrain);
 	
+	public int getId();
+	
 }

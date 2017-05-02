@@ -28,6 +28,8 @@ import modele.bateau.Fregate;
 import modele.bateau.Patrouilleur;
 import modele.bateau.PorteAvion;
 import modele.flotte.Flotte;
+import stockage.DAO_Sauvegarde;
+import stockage.GameFactory;
 
 public class VuePrincipale extends JFrame{
 
@@ -66,15 +68,33 @@ public class VuePrincipale extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				NouveauNiveau nn = new NouveauNiveau(p);
-				
 			}
 			
 
         });
 		jm.add(nouveau);
 		JMenuItem sauvegarde = new JMenuItem("Sauvegarder");
+		sauvegarde.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DAO_Sauvegarde dao = GameFactory.getInstance().getDAO_Sauvegarde();
+				dao.saveProfil(m);
+			}
+			
+
+        });
 		jm.add(sauvegarde);
 		JMenuItem charger = new JMenuItem("Charger");
+		sauvegarde.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DAO_Sauvegarde dao = GameFactory.getInstance().getDAO_Sauvegarde();
+			}
+			
+
+        });
 		jm.add(charger);
 		jmb.add(jm);
 		

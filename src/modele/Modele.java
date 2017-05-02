@@ -117,7 +117,7 @@ public class Modele extends Observable implements Runnable{
 	}
 	
 	public int getModeDeTir() {
-		return modeDeTir.getIdTir();
+		return modeDeTir.getId();
 	}
 
 	public void setNomPartie(String nomPartie) {

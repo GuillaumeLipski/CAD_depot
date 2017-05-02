@@ -1,5 +1,6 @@
 package modele.epoque;
 
+import modele.bateau.Bateau;
 import modele.bateau.Caravelle;
 import modele.bateau.Galion;
 import modele.bateau.Nef;
@@ -11,13 +12,14 @@ public class Epoque1800 extends Epoque {
 	public Epoque1800()
 	{
 		nom = "18eme";
-		flotte_type = new Flotte();
-		flotte_type.add(new Nef());
-		flotte_type.add(new Nef());
-		flotte_type.add(new Caravelle());
-		flotte_type.add(new Caravelle());
-		flotte_type.add(new Galion());
-		flotte_type.add(new Vaisseau());
+		Bateau[] bateaux = new Bateau[6];
+		bateaux[0] = new Nef();
+		bateaux[1] = new Nef();
+		bateaux[2] = new Caravelle();
+		bateaux[3] = new Caravelle();
+		bateaux[4] = new Galion();
+		bateaux[5] = new Vaisseau();
+		flotte_type = new Flotte(bateaux);
 	}
 	
 	public String getNomParTaille(int taille) {

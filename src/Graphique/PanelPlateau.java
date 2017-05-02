@@ -108,7 +108,7 @@ public class PanelPlateau extends JPanel  implements Observer{
 					{
 						for (int k = 0; k < b.getTaille(); k++)
 						{
-							if (b.isDirection())
+							if (b.getDirection())
 							{
 								plateau[p.y][p.x + k].setImage(b.getImage(k));
 							}
