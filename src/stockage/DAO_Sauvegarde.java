@@ -1,4 +1,4 @@
-
+﻿
 package stockage;
 
 import java.io.File;
@@ -94,6 +94,11 @@ public class DAO_Sauvegarde {
         return liste;
 
     } // getAllProfils()
+
+
+/*                    String[]uri=listOfFiles[i].split("\");
+                    String nom=uri[uro.length-1].replace(".xml","");
+                    liste.add(nom);*/
 
     
     /*------------------------------ PROFIL ----------------------------------
