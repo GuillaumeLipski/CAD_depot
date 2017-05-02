@@ -2,6 +2,6 @@ package modele.tir;
 
 public interface Tir {
 
-	public void tir(int idJoueur);
+	public boolean tir(int idJoueur);
 	
 }
