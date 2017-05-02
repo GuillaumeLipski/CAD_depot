@@ -6,4 +6,6 @@ public interface Epoque {
 	
 	public String getApparanceParTaille(int taille);
 	
+	public String getNom();
+	
 }
