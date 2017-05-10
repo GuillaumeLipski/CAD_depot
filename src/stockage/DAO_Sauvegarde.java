@@ -150,7 +150,7 @@ public class DAO_Sauvegarde {
 	/**
 	 * Permet de savoir si un profil du meme nom existe deja
 	 * @param nom nom a tester
-	 * @return TRUE si un profil ayant le meme nom existe deja, FALSE sinon on le crée
+	 * @return TRUE si un profil ayant le meme nom existe deja, FALSE sinon on le cree
 	 */
 	public boolean isExistingProfil(String nom) {  // Profil existant(String nom)
 

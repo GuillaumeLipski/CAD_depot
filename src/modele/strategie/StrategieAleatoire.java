@@ -16,7 +16,7 @@ public class StrategieAleatoire implements Strategie{
 	public void setModele(Modele mo) {m=mo;}
 	
 	@Override
-	public String toString() {return "Ordinateur : Aléatoire";}
+	public String toString() {return "Ordinateur : Aleatoire";}
 
 	@Override
 	public void placerBateau(int njoueur, Terrain t, int nbateau) {

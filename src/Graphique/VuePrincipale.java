@@ -112,12 +112,6 @@ public class VuePrincipale extends JFrame{
 		setModele(m);
 		m.setPlayer(1);
 	}
-	
-	
-	public void main(String[] args)
-	{
-		VuePrincipale v = new VuePrincipale();
-	}
 
 	public void setModele(Modele modele) {
 		m = modele;

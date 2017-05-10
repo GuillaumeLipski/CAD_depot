@@ -43,7 +43,7 @@ public class PanelInformation extends JPanel  implements Observer {
 		nt1 = new JTextField("0");
 		nt1.setEnabled(false);
 		nt1.setHorizontalAlignment(JLabel.CENTER);
-		JLabel labeltire = new JLabel("Tirs effectués");
+		JLabel labeltire = new JLabel("Tirs effectues");
 		labeltire.setHorizontalAlignment(JLabel.CENTER);
 		nt2 = new JTextField("0");
 		nt2.setEnabled(false);

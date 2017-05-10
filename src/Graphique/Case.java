@@ -31,11 +31,11 @@ public class Case extends JPanel {
 	 * Etats:
 	 * 0 - Vide
 	 * 1 - Case Bateau Valide 
-	 * 2 - Case Bateau Touché
-	 * 3 - Case Bateau Coulé
+	 * 2 - Case Bateau Touche
+	 * 3 - Case Bateau Coule
 	 * 4 - Case Boulet Dans l'Eau
-	 * 5 - Case Sélection Possible
-	 * 6 - Case Sélection Non Possible
+	 * 5 - Case Selection Possible
+	 * 6 - Case Selection Non Possible
 	 */
 	
 	public Case(int x, int y)

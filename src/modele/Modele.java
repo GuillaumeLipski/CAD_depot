@@ -20,7 +20,7 @@ public class Modele extends Observable implements Runnable{
 	
 	private Terrain terrain;
 	
-	private int player, step; //player : Numero du joueur auquel c'est le tour de jouer || step: étape du déroulement de la partie.
+	private int player, step; //player : Numero du joueur auquel c'est le tour de jouer || step: etape du deroulement de la partie.
 	
 	private Bateau bateauSelectionne;
 	

@@ -43,11 +43,11 @@ public class CaseClick implements MouseListener {
 			switch (arg0.getButton())
 			{
 				case MouseEvent.BUTTON1:		
-					Case caseliée = (Case) arg0.getSource();
-					if (caseliée.getState() == Case.State.SELECT_OK)
+					Case caseliee = (Case) arg0.getSource();
+					if (caseliee.getState() == Case.State.SELECT_OK)
 					{
-						int x = (int)caseliée.getCoords().getX();
-						int y = (int)caseliée.getCoords().getY();
+						int x = (int)caseliee.getCoords().getX();
+						int y = (int)caseliee.getCoords().getY();
 						State state = State.VIDE;
 						if (!direction)
 						{
@@ -79,9 +79,9 @@ public class CaseClick implements MouseListener {
 	public void mouseEntered(MouseEvent arg0) {
 		if (enable)
 		{
-			Case caseliée = (Case) arg0.getSource();
-			int x = (int)caseliée.getCoords().getX();
-			int y = (int)caseliée.getCoords().getY();
+			Case caseliee = (Case) arg0.getSource();
+			int x = (int)caseliee.getCoords().getX();
+			int y = (int)caseliee.getCoords().getY();
 			State state = State.SELECT_OK;
 			switch (step)
 			{
@@ -124,7 +124,7 @@ public class CaseClick implements MouseListener {
 					}
 				}
 				break;
-			case 1: //Choix d'une case à viser
+			case 1: //Choix d'une case a viser
 				boolean check = true;
 				State s = plateau.getState(x, y);
 				if (s == State.VIDE || s == State.BATEAU_TO)
@@ -141,9 +141,9 @@ public class CaseClick implements MouseListener {
 	public void mouseExited(MouseEvent arg0) {
 		if (enable)
 		{
-			Case caseliée = (Case) arg0.getSource();
-			int x = (int)caseliée.getCoords().getX();
-			int y = (int)caseliée.getCoords().getY();
+			Case caseliee = (Case) arg0.getSource();
+			int x = (int)caseliee.getCoords().getX();
+			int y = (int)caseliee.getCoords().getY();
 			if (!direction)
 			{
 					for (int i = 0; i<taille; i++)
